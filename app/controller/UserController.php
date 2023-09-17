@@ -138,15 +138,15 @@ class UserController
     public function postLogin()
     {
         $request = new UserLoginRequest();
-        $request->username = $_POST['username'];
-        $request->password = $_POST['password'];
+        $request->username = $_POST['uname'];
+        $request->password = $_POST['pass'];
 
         try {
             $response = $this->userService->login($request);
             $this->sessionService->create($response->user->id);
             View::redirect('/');
         } catch (ValidationException $exception) {
-            View::render('user/login', [
+            View::render('home/login', [
                 'title' => 'Login user',
                 'error' => $exception->getMessage()
             ]);

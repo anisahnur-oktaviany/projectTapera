@@ -26,13 +26,14 @@ class HomeController
     {
         $user = $this->sessionService->current();
         if ($user == null) {
-            View::render('home/index', [
-                "title" => "Login Management"
+            View::render('home/login', [
+                "title" => "Login"
             ]);
         } else {
             View::render('home/dashboard', [
                 "title" => "Dashboard",
                 "user" => [
+                    "username" => $user->username,
                     "direktorat_name" => $user->direktorat_name
                 ]
             ]);
